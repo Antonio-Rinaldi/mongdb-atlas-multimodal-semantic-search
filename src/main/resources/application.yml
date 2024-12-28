@@ -1,0 +1,45 @@
+spring:
+  ai:
+    vectorstore:
+      mongodb:
+        initialize-schema: true
+        index-name: vector_index
+        collection-name: commercial-activities
+        path-name: embedding
+        num-dimensions: 1024
+        fields-to-filter:
+          - town
+          - categories
+    ollama:
+      base-url: change-it
+      embedding:
+        enabled: true
+        model: bge-m3
+      chat:
+        enabled: true
+        options:
+          model: llava:7b
+          temperature: 0f
+#        multimodal:
+#          enabled: false
+#          media:
+#            text:
+#              enabled: false
+#              options:
+#                model: llava:7b
+#            audio:
+#              enabled: false
+#              options:
+#                model: llava:7b
+#            video:
+#              enabled: false
+#              options:
+#                model: llava:7b
+#            image:
+#              enabled: false
+#              options:
+#                model: llava:7b
+  data:
+    mongodb:
+      uri: change-it
+      database: vector-search
