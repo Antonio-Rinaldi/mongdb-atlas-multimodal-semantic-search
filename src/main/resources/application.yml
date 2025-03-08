@@ -14,31 +14,12 @@ spring:
       base-url: change-it
       embedding:
         enabled: true
-        model: bge-m3
+        model: mxbai-embed-large
       chat:
         enabled: true
         options:
           model: llava:7b
           temperature: 0f
-#        multimodal:
-#          enabled: false
-#          media:
-#            text:
-#              enabled: false
-#              options:
-#                model: llava:7b
-#            audio:
-#              enabled: false
-#              options:
-#                model: llava:7b
-#            video:
-#              enabled: false
-#              options:
-#                model: llava:7b
-#            image:
-#              enabled: false
-#              options:
-#                model: llava:7b
   data:
     mongodb:
       uri: change-it

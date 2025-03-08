@@ -112,7 +112,8 @@ public class MongoDbAtlasVectorStore extends MongoDBAtlasVectorStore {
             SearchIndexModel vectorSearchIndex = createVectorSearchIndex();
             MongoCollection<Document> collection = this.mongoTemplate.getCollection(this.collectionName);
             // TODO: understand
-            // if(StreamSupport.stream(collection.listSearchIndexes(SearchIndexModel.class).spliterator(), false).anyMatch(index -> index.getName().equals(vectorSearchIndex.getName()))) {
+            // if(StreamSupport.stream(collection.listSearchIndexes(SearchIndexModel.class).spliterator(), false)
+            //   .anyMatch(index -> index.getName().equals(vectorSearchIndex.getName()))) {
             //     collection.updateSearchIndex(vectorSearchIndex);
             // }
             collection.createSearchIndexes(List.of(vectorSearchIndex));
@@ -166,14 +167,14 @@ public class MongoDbAtlasVectorStore extends MongoDBAtlasVectorStore {
         );
     }
 
-    private static MongoDbAtlasVectorStore.Builder createBuilder(
+    private static MongoDBAtlasVectorStore.Builder createBuilder(
             MongoTemplate mongoTemplate,
             EmbeddingModel embeddingModel,
             ObjectProvider<ObservationRegistry> observationRegistry,
             ObjectProvider<VectorStoreObservationConvention> customObservationConvention,
             BatchingStrategy batchingStrategy
     ) {
-       return MongoDbAtlasVectorStore.builder(mongoTemplate, embeddingModel)
+       return MongoDBAtlasVectorStore.builder(mongoTemplate, embeddingModel)
                 .observationRegistry(observationRegistry.getIfUnique(() -> ObservationRegistry.NOOP))
                 .customObservationConvention(customObservationConvention.getIfAvailable(() -> null))
                 .batchingStrategy(batchingStrategy);

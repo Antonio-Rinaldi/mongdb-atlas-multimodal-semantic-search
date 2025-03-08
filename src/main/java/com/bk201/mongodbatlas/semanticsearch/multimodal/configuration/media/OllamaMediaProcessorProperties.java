@@ -6,6 +6,7 @@ import org.springframework.ai.autoconfigure.ollama.OllamaChatProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.EnumMap;
 import java.util.Map;
 
 @Data
@@ -14,5 +15,5 @@ import java.util.Map;
 public class OllamaMediaProcessorProperties {
 
     private boolean enabled;
-    private Map<MediaType, OllamaChatProperties> media;
+    private Map<MediaType, OllamaChatProperties> media = new EnumMap<>(MediaType.class);
 }

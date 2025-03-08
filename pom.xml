@@ -5,18 +5,19 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.4.0</version>
+        <version>3.4.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.bk201</groupId>
     <artifactId>mongodb-atlas-multimodal-semantic-search</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <name>mongodb-atlas-multimodal-semantic-search</name>
     <description>MongoDB Atlas Multimodal Semantic Search Demo</description>
 
     <properties>
         <java.version>21</java.version>
         <spring-ai.version>1.0.0-SNAPSHOT</spring-ai.version>
+        <org.springdoc.spingdoc-openapi-starter-webmvc-ui.version>2.6.0</org.springdoc.spingdoc-openapi-starter-webmvc-ui.version>
         <org.openapitools.jackson-databind-nullable.version>0.2.6</org.openapitools.jackson-databind-nullable.version>
         <org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
         <testcontainers.version>1.19.3</testcontainers.version>
@@ -31,22 +32,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-            <version>2.6.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.openapitools</groupId>
-            <artifactId>jackson-databind-nullable</artifactId>
-            <version>${org.openapitools.jackson-databind-nullable.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-        
+
         <!-- Spring AI Dependencies -->
         <dependency>
             <groupId>org.springframework.ai</groupId>
@@ -58,23 +44,35 @@
             <artifactId>spring-ai-ollama-spring-boot-starter</artifactId>
             <version>${spring-ai.version}</version>
         </dependency>
-        <!--<dependency>
-            <groupId>org.springframework.ai</groupId>
-            <artifactId>spring-ai-transformers</artifactId>
-            <version>${spring-ai.version}</version>
-        </dependency>-->
         <dependency>
             <groupId>org.springframework.ai</groupId>
             <artifactId>spring-ai-spring-boot-autoconfigure</artifactId>
             <version>${spring-ai.version}</version>
         </dependency>
 
+        <!-- Swagger dependencies-->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>${org.springdoc.spingdoc-openapi-starter-webmvc-ui.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openapitools</groupId>
+            <artifactId>jackson-databind-nullable</artifactId>
+            <version>${org.openapitools.jackson-databind-nullable.version}</version>
+        </dependency>
+
+        <!-- Util dependencies -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
             <version>${org.mapstruct.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct-processor</artifactId>

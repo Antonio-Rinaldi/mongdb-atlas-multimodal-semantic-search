@@ -1,12 +1,11 @@
 package com.bk201.mongodbatlas.semanticsearch.multimodal.adapter.outbound.embedding;
 
 import com.bk201.mongodbatlas.semanticsearch.multimodal.core.media.MediaProcessor;
-import com.bk201.mongodbatlas.semanticsearch.multimodal.core.model.CommercialActivity;
 import com.bk201.mongodbatlas.semanticsearch.multimodal.core.model.MultimodalSearch;
-import com.bk201.mongodbatlas.semanticsearch.multimodal.core.port.outbound.CommercialActivityEmbeddingPort;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.bk201.mongodbatlas.semanticsearch.multimodal.core.port.outbound.EmbeddingPort;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.ai.embedding.EmbeddingModel;
 import org.springframework.stereotype.Service;
@@ -14,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class CommercialActivityEmbeddingAdapter implements CommercialActivityEmbeddingPort {
+public class EmbeddingAdapter implements EmbeddingPort {
 
     private final ObjectMapper jsonMapper;
     private final EmbeddingModel embeddingModel;
@@ -42,17 +41,9 @@ public class CommercialActivityEmbeddingAdapter implements CommercialActivityEmb
     }
 
     @Override
-    public float[] generateEmbedding(CommercialActivity commercialActivity) {
-        try {
-            String json = jsonMapper.writeValueAsString(commercialActivity);
-            return embeddingModel.embed(json);
-
-        } catch (JsonProcessingException exception) {
-            String errorMessage = String.format(
-                    "Failed to serialize commercial activity to json %s while calculating embeddings.",
-                    commercialActivity.getTaxCode()
-            );
-            throw new RuntimeException(errorMessage, exception);
-        }
+    @SneakyThrows
+    public <E> float[] generateEmbedding(E entity) {
+        String json = jsonMapper.writeValueAsString(entity);
+        return embeddingModel.embed(json);
     }
 }
