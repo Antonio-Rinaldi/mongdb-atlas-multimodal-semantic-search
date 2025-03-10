@@ -16,7 +16,7 @@ public interface CommercialActivityRepository extends MongoRepository<Commercial
             {
                 $vectorSearch: {
                     "index": "vector_index",
-                    "path": "embedding",
+                    "path": "embeddings",
                     "queryVector": ?0,
                     "numCandidates": 4096,
                     "limit": ?1,
@@ -24,9 +24,6 @@ public interface CommercialActivityRepository extends MongoRepository<Commercial
                         $and: [
                             {
                                 town:  ?2
-                            },
-                            {
-                                categories: { $in: ?3 }
                             }
                         ]
                     }
@@ -36,21 +33,15 @@ public interface CommercialActivityRepository extends MongoRepository<Commercial
             {
                 $project: {
                     _id: 0,
-                    taxCode: 1,
-                    name: 1,
-                    town: 1,
-                    address: 1,
-                    categories: 1,
-                    description: 1,
+                    embeddings: 0,
                     score: { $meta: "vectorSearchScore" }
                 }
             }
             """
     })
-    List<CommercialActivityEntity> findSimilarByTownAndCategoryIn(
-            float[] embedding,
+    List<CommercialActivityEntity> findSimilarByTown(
+            float[] embeddings,
             int limit,
-            String town,
-            List<String> category
+            String town
     );
 }

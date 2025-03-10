@@ -4,14 +4,12 @@ import com.bk201.mongodbatlas.semanticsearch.multimodal.adapter.outbound.mongodb
 import com.bk201.mongodbatlas.semanticsearch.multimodal.core.model.CommercialActivity;
 import org.apache.commons.lang3.tuple.Pair;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
 import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface CommercialActivityEntityMapper {
 
-    @Mapping(source = "embeddings", target = "embedding")
     CommercialActivityEntity toEntity(CommercialActivity model, float[] embeddings);
     default CommercialActivityEntity toEntity(Pair<CommercialActivity, float[]> model) {
         return toEntity(model.getLeft(), model.getRight());

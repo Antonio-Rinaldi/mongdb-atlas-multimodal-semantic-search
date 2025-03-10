@@ -11,10 +11,9 @@ public interface CommercialActivityDatabasePort {
 
     List<CommercialActivity> saveCommercialActivities(List<Pair<CommercialActivity, float[]>> commercialActivities);
 
-    List<CommercialActivity> findCommercialActivitiesSimilarByTownAndCategoryIn(
+    List<CommercialActivity> findCommercialActivitiesSimilarByTown(
             float[] embeddings,
             int numberOfResults,
-            String town,
-            List<String> categories
+            String town
     );
 }

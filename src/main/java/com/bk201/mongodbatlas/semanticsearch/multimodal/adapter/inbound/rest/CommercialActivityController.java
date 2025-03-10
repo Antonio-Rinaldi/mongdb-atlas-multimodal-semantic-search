@@ -42,12 +42,11 @@ public class CommercialActivityController implements CommercialActivityApi {
         return ResponseEntity.ok().build();
     }
 
-    public ResponseEntity<List<CommercialActivityResponse>> searchSimilarCommercialActivitiesByTownAndCategoriesIn(
+    public ResponseEntity<List<CommercialActivityResponse>> searchSimilarCommercialActivitiesByTown(
            String text,
            List<MultipartFile> mediaFiles,
            int numberOfResults,
-           String town,
-           List<String> categories
+           String town
     ) {
         List<MediaFile> media = extractMediaFiles(mediaFiles);
         MultimodalSearch multimodalSearch = MultimodalSearch.builder()
@@ -55,8 +54,8 @@ public class CommercialActivityController implements CommercialActivityApi {
                 .media(media)
                 .build();
         List<CommercialActivity> commercialActivities =
-                commercialActivityService.findSimilarCommercialActivitiesByTownAndCategoriesIn(
-                    multimodalSearch, numberOfResults, town, categories
+                commercialActivityService.findSimilarCommercialActivitiesByTown(
+                    multimodalSearch, numberOfResults, town
         );
         List<CommercialActivityResponse> commercialActivityResponses =
                 commercialActivityRestMapper.toRests(commercialActivities);

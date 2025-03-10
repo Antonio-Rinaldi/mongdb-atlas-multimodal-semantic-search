@@ -33,11 +33,10 @@ public interface CommercialActivityApi {
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    ResponseEntity<List<CommercialActivityResponse>> searchSimilarCommercialActivitiesByTownAndCategoriesIn(
+    ResponseEntity<List<CommercialActivityResponse>> searchSimilarCommercialActivitiesByTown(
             @RequestPart(value = "text") String text,
             @RequestPart(value = "media", required = false) List<MultipartFile> mediaFiles,
             @RequestParam(value = "numberOfResults", defaultValue = "10") int numberOfResults,
-            @RequestParam(value = "town") String town,
-            @RequestParam(value = "categories") List<String> categories
+            @RequestParam(value = "town") String town
     );
 }

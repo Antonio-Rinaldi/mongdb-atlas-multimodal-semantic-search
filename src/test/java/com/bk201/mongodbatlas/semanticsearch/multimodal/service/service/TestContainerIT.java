@@ -46,7 +46,7 @@ public abstract class TestContainerIT {
                 "fields",
                 List.of(
                         new Document("type", "vector")
-                                .append("path", "embedding")
+                                .append("path", "embeddings")
                                 .append("numDimensions", 1536)
                                 .append("similarity", "cosine")
                 )

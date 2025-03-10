@@ -32,15 +32,14 @@ public class CommercialActivityService {
         return commercialActivityDatabasePort.saveCommercialActivities(commercialActivitiesWithEmbeddings);
     }
 
-    public List<CommercialActivity> findSimilarCommercialActivitiesByTownAndCategoriesIn(
+    public List<CommercialActivity> findSimilarCommercialActivitiesByTown(
             MultimodalSearch multimodalSearch,
             int numberOfResults,
-            String town,
-            List<String> categories
+            String town
     ) {
         float[] embeddings = embeddingPort.generateEmbedding(multimodalSearch);
-        return commercialActivityDatabasePort.findCommercialActivitiesSimilarByTownAndCategoryIn(
-                embeddings, numberOfResults, town, categories
+        return commercialActivityDatabasePort.findCommercialActivitiesSimilarByTown(
+                embeddings, numberOfResults, town
         );
     }
 }

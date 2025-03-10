@@ -38,14 +38,13 @@ public class CommercialActivityMongodbAdapter implements CommercialActivityDatab
 
 
     @Override
-    public List<CommercialActivity> findCommercialActivitiesSimilarByTownAndCategoryIn(
+    public List<CommercialActivity> findCommercialActivitiesSimilarByTown(
             float[] embeddings,
             int numberOfResults,
-            String town,
-            List<String> categories
+            String town
     ) {
         List<CommercialActivityEntity> commercialActivityEntities =
-                commercialActivityRepository.findSimilarByTownAndCategoryIn(embeddings, numberOfResults, town, categories);
+                commercialActivityRepository.findSimilarByTown(embeddings, numberOfResults, town);
         return commercialActivityEntityMapper.toModels(commercialActivityEntities);
     }
 }

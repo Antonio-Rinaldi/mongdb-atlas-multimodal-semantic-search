@@ -2,19 +2,17 @@ spring:
   ai:
     vectorstore:
       mongodb:
-        initialize-schema: true
+        initialize-schema: false
         index-name: vector_index
         collection-name: commercial-activities
-        path-name: embedding
-        num-dimensions: 1024
-        fields-to-filter:
+        path-name: embeddings
+        metadata-fields-to-filter:
           - town
-          - categories
     ollama:
       base-url: change-it
       embedding:
         enabled: true
-        model: mxbai-embed-large
+        model: bge-m3
       chat:
         enabled: true
         options:
