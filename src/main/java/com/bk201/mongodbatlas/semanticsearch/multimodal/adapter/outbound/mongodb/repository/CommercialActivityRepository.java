@@ -15,12 +15,12 @@ public interface CommercialActivityRepository extends MongoRepository<Commercial
             """
             {
                 $vectorSearch: {
-                    "index": "vector_index",
-                    "path": "embeddings",
-                    "queryVector": ?0,
-                    "numCandidates": 4096,
-                    "limit": ?1,
-                    "filter": {
+                    index: "vector_index",
+                    path: "embeddings",
+                    queryVector: ?0,
+                    numCandidates: 4096,
+                    limit: ?1,
+                    filter: {
                         $and: [
                             {
                                 town:  ?2

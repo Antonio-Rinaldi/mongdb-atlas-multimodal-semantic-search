@@ -5,11 +5,23 @@ import string
 import sys
 import time
 from datetime import datetime
-from typing import List, Dict
+from typing import List, Dict, Tuple
+
+# Business categories and their appropriate prefixes
+category_prefixes = {
+    "food_dining": ["Ristorante", "Trattoria", "Osteria", "Pizzeria"],
+    "beverages_nightlife": ["Bar", "Cafe", "Enoteca"],
+    "food_services": ["Pasticceria", "Gelateria", "Mercato"],
+    "accommodation": ["Hotel"],
+    "shopping": ["Boutique", "Galleria"],
+    "health_beauty": ["Spa"],
+    "fitness_sports": ["Palestra", "Centro"],
+    "entertainment": ["Teatro", "Cinema"],
+    "professional": ["Studio"],
+    "education": ["Libreria"]
+}
 
 # Business name components
-prefixes = ["Ristorante", "Cafe", "Bar", "Trattoria", "Osteria", "Pizzeria", "Hotel", "Boutique", "Studio", "Centro", 
-           "Palestra", "Libreria", "Enoteca", "Gelateria", "Pasticceria", "Mercato", "Galleria", "Teatro", "Cinema", "Spa"]
 names = ["Milano", "Italia", "Centrale", "Nuovo", "Bella", "Verde", "Arte", "Sole", "Luna", "Mare", 
          "Stella", "Rosa", "Oro", "Blu", "Rosso", "Bianco", "Nero", "Piccolo", "Grande", "Antica"]
 
@@ -74,24 +86,57 @@ def generate_tax_code() -> str:
     check_letter = random.choice(string.ascii_uppercase)
     return f"{letters}{numbers}{check_letter}"
 
-def generate_name() -> str:
-    """Generate a random business name."""
-    return f"{random.choice(prefixes)} {random.choice(names)}"
+def generate_business_info() -> Tuple[str, str, List[str]]:
+    """Generate a coherent business name and its matching categories."""
+    # First select a random category type
+    category_type = random.choice(list(categories.keys()))
+    # Get the appropriate prefixes for this category type
+    possible_prefixes = category_prefixes[category_type]
+    # Select a random prefix from the appropriate ones
+    prefix = random.choice(possible_prefixes)
+    # Generate the full name
+    name = f"{prefix} {random.choice(names)}"
+    # Get 1-3 matching categories from the same category type
+    num_categories = random.randint(1, 3)
+    selected_categories = random.sample(categories[category_type], min(num_categories, len(categories[category_type])))
+    
+    return name, category_type, selected_categories
 
 def generate_address() -> str:
     """Generate a random address."""
     return f"{random.choice(streets)}, {random.randint(1, 200)}"
 
-def get_random_categories() -> List[str]:
-    """Get 1-3 random categories."""
-    category_type = random.choice(list(categories.keys()))
-    num_categories = random.randint(1, 3)
-    return random.sample(categories[category_type], min(num_categories, len(categories[category_type])))
-
-def generate_description(name: str, selected_categories: List[str]) -> str:
+def generate_description(name: str, category_type: str, selected_categories: List[str]) -> str:
     """Generate a description based on the business name and categories."""
-    adjectives = ["eccellente", "rinomato", "accogliente", "elegante", "tradizionale", "moderno", "esclusivo"]
-    features = ["servizio personalizzato", "atmosfera unica", "location strategica", "esperienza indimenticabile"]
+    # Customize adjectives and features based on category type
+    category_specific_adjectives = {
+        "food_dining": ["rinomato", "gustoso", "accogliente"],
+        "beverages_nightlife": ["vivace", "alla moda", "elegante"],
+        "food_services": ["fresco", "genuino", "artigianale"],
+        "accommodation": ["confortevole", "lussuoso", "accogliente"],
+        "shopping": ["elegante", "esclusivo", "alla moda"],
+        "health_beauty": ["rilassante", "professionale", "moderno"],
+        "fitness_sports": ["attrezzato", "professionale", "moderno"],
+        "entertainment": ["divertente", "coinvolgente", "vivace"],
+        "professional": ["professionale", "affidabile", "esperto"],
+        "education": ["stimolante", "educativo", "professionale"]
+    }
+    
+    category_specific_features = {
+        "food_dining": ["cucina raffinata", "ingredienti di prima qualità", "ambiente accogliente"],
+        "beverages_nightlife": ["atmosfera unica", "selezione premium", "musica dal vivo"],
+        "food_services": ["prodotti freschi", "qualità artigianale", "servizio personalizzato"],
+        "accommodation": ["comfort moderno", "posizione centrale", "servizio premium"],
+        "shopping": ["ultime tendenze", "prodotti esclusivi", "consulenza personalizzata"],
+        "health_beauty": ["trattamenti personalizzati", "prodotti di qualità", "ambiente rilassante"],
+        "fitness_sports": ["attrezzature moderne", "istruttori qualificati", "programmi personalizzati"],
+        "entertainment": ["programmazione variegata", "esperienza coinvolgente", "eventi speciali"],
+        "professional": ["servizio professionale", "consulenza esperta", "soluzioni personalizzate"],
+        "education": ["programmi personalizzati", "insegnanti qualificati", "ambiente stimolante"]
+    }
+    
+    adjectives = category_specific_adjectives.get(category_type, ["eccellente", "rinomato", "accogliente"])
+    features = category_specific_features.get(category_type, ["servizio personalizzato", "location strategica"])
     
     description = f"{random.choice(adjectives).capitalize()} {name.lower()} che offre {random.choice(features)}. "
     description += f"Specializzato in {', '.join(selected_categories)}. "
@@ -100,8 +145,7 @@ def generate_description(name: str, selected_categories: List[str]) -> str:
 
 def generate_activity() -> Dict:
     """Generate a single commercial activity."""
-    name = generate_name()
-    selected_categories = get_random_categories()
+    name, category_type, selected_categories = generate_business_info()
     
     return {
         "taxCode": generate_tax_code(),
@@ -109,7 +153,7 @@ def generate_activity() -> Dict:
         "town": random.choice(towns),
         "address": generate_address(),
         "categories": selected_categories,
-        "description": generate_description(name, selected_categories)
+        "description": generate_description(name, category_type, selected_categories)
     }
 
 def generate_batch(size: int = 100) -> List[Dict]:

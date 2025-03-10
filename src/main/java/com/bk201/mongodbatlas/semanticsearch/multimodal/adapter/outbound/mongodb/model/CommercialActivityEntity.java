@@ -21,5 +21,6 @@ public class CommercialActivityEntity {
     private String address;
     private List<String> categories;
     private String description;
+    private double score;
     private float[] embeddings;
 }
