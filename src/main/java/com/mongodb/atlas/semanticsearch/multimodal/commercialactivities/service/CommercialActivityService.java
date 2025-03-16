@@ -2,13 +2,12 @@ package com.mongodb.atlas.semanticsearch.multimodal.commercialactivities.service
 
 import com.mongodb.atlas.semanticsearch.multimodal.commercialactivities.chat.multimodal.MultimodalChat;
 import com.mongodb.atlas.semanticsearch.multimodal.commercialactivities.chat.rag.RagChat;
+import com.mongodb.atlas.semanticsearch.multimodal.commercialactivities.embedding.EmbeddingCalculator;
 import com.mongodb.atlas.semanticsearch.multimodal.commercialactivities.model.CommercialActivity;
 import com.mongodb.atlas.semanticsearch.multimodal.commercialactivities.model.CommercialActivityWithEmbeddings;
 import com.mongodb.atlas.semanticsearch.multimodal.commercialactivities.model.MultimodalSearch;
-import com.mongodb.atlas.semanticsearch.multimodal.commercialactivities.embedding.EmbeddingCalculator;
 import com.mongodb.atlas.semanticsearch.multimodal.commercialactivities.repository.CommercialActivityDatabase;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 
@@ -48,11 +47,11 @@ public class CommercialActivityService {
         return commercialActivityDatabase.findSimilarCommercialActivitiesByTown(town, embeddings, numberOfResults);
     }
 
-    public String answerUsingSimilarCommercialActivitiesByTown(String town, MultimodalSearch multimodalSearch) {
+    public Flux<String> answerUsingSimilarCommercialActivitiesByTown(String town, MultimodalSearch multimodalSearch) {
         String multimodalUserInput = getMultimodalUserInput(multimodalSearch);
         float[] embeddings = embeddingCalculator.generateEmbedding(multimodalUserInput);
         List<CommercialActivity> commercialActivities =
-                commercialActivityDatabase.findSimilarCommercialActivitiesByTown(town, embeddings, 5);
+                commercialActivityDatabase.findSimilarCommercialActivitiesByTown(town, embeddings, 20);
         return ragChat.exchange(multimodalUserInput, commercialActivities);
     }
 
@@ -60,15 +59,12 @@ public class CommercialActivityService {
         StringBuilder multimodalUserInput = new StringBuilder();
         // Handle text input if present
         multimodalUserInput.append(multimodalSearch.getText());
-        multimodalUserInput.append("\n");
+        multimodalUserInput.append("\n\n");
         // Handle media content
-        multimodalSearch.getMedia().stream()
-                .map(media -> multimodalChat.exchange(multimodalSearch.getText(), media))
-                .forEach(media -> {
-                    multimodalUserInput.append(media);
-                    multimodalUserInput.append("\n");
-                });
-        // Generate embedding from combined text representation
+        Flux.fromStream(multimodalSearch.getMedia()::stream)
+            .concatMap(media -> multimodalChat.exchange(multimodalSearch.getText(), media))
+            .toStream()
+            .forEach(multimodalUserInput::append);
         return multimodalUserInput.toString();
     }
 }

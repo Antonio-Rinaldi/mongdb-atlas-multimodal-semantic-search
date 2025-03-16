@@ -14,6 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import reactor.core.publisher.Flux;
 
 import java.util.Collections;
 import java.util.List;
@@ -59,9 +60,9 @@ public class CommercialActivityController implements CommercialActivityApi {
     }
 
     @Override
-    public ResponseEntity<String> answerUsingSimilarCommercialActivitiesByTown(String town, String text, List<MultipartFile> mediaFiles) {
+    public ResponseEntity<Flux<String>> answerUsingSimilarCommercialActivitiesByTown(String town, String text, List<MultipartFile> mediaFiles) {
         MultimodalSearch multimodalSearch = buildMultimodalSearch(text, mediaFiles);
-        String response = commercialActivityService.answerUsingSimilarCommercialActivitiesByTown(town, multimodalSearch);
+        Flux<String> response = commercialActivityService.answerUsingSimilarCommercialActivitiesByTown(town, multimodalSearch);
         return ResponseEntity.ok(response);
     }
 

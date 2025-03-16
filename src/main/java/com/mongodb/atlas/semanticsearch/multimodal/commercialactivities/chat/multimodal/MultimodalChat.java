@@ -7,6 +7,7 @@ import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.MimeType;
+import reactor.core.publisher.Flux;
 
 @Component
 @RequiredArgsConstructor
@@ -14,8 +15,8 @@ public class MultimodalChat {
 
     private final ChatClient multimodalChatClient;
 
-    public String exchange(String userPrompt, MediaFile mediaFile) {
-        return multimodalChatClient.prompt()
+    public Flux<String> exchange(String userPrompt, MediaFile mediaFile) {
+        Flux<String> response = multimodalChatClient.prompt()
                 .system(getSystemPrompt(mediaFile.getType()))
                 .user(user -> user
                         .text(userPrompt)
@@ -23,8 +24,9 @@ public class MultimodalChat {
                             MimeType.valueOf(mediaFile.getType()),
                             new InputStreamResource(mediaFile.getContent())
                         ))
-                .call()
+                .stream()
                 .content();
+        return Flux.concat(response, Flux.just("\n\n"));
     }
 
     private String getSystemPrompt(String contentType) {

@@ -47,7 +47,7 @@ public interface CommercialActivityApi {
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    ResponseEntity<String> answerUsingSimilarCommercialActivitiesByTown(
+    ResponseEntity<Flux<String>> answerUsingSimilarCommercialActivitiesByTown(
             @RequestParam(value = "town") String town,
             @RequestPart(value = "text") String text,
             @RequestPart(value = "media", required = false) List<MultipartFile> mediaFiles

@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.stereotype.Component;
+import reactor.core.publisher.Flux;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class RagChat {
     private final ChatClient ragChatClient;
 
     @SneakyThrows
-    public String exchange(String userPrompt, List<?> objects) {
+    public Flux<String> exchange(String userPrompt, List<?> objects) {
         StringBuilder systemPrompt = new StringBuilder();
         systemPrompt.append("You are a helpful chatbot.\n");
         systemPrompt.append("Use only the following pieces of context to answer the question.\n");
@@ -30,7 +31,7 @@ public class RagChat {
         return ragChatClient.prompt()
                 .system(systemPrompt.toString())
                 .user(userPrompt)
-                .call()
+                .stream()
                 .content();
     }
 }
