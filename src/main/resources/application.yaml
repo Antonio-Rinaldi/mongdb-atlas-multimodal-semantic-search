@@ -1,0 +1,32 @@
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
+    
+logging:
+  level:
+    org.springdoc: DEBUG
+    org.springframework.web: DEBUG
+
+spring:
+  application.name: commercial-activities
+  ai:
+    ollama:
+      base-url: change-it
+      embedding:
+        enabled: true
+        model: bge-m3:567m
+      chat:
+        multimodal:
+          model: gemma3:1b
+          temperature: 0f
+        rag:
+          # model: qwq:32b
+          model: deepseek-r1:7b
+
+  data:
+    mongodb:
+      uri: change-it
+      database: change-it
+

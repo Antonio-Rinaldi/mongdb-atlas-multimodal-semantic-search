@@ -1,0 +1,8 @@
+spring:
+  ai:
+    ollama:
+      base-url: http://localhost:11434
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/?retryWrites=true&w=majority&directConnection=true
+      database: mongodb-atlas-multimodal-semantic-vector-search

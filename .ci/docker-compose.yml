@@ -1,0 +1,10 @@
+name: mongodb-atlas-multimodal-semantic-vector-search
+
+services:
+  mongodb:
+    container_name: mongodb
+    image: mongodb/mongodb-atlas-local
+    environment:
+      - MONGODB_INITDB_DATABASE=mongodb-atlas-multimodal-semantic-vector-search
+    ports:
+      - "27017:27017"
