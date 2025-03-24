@@ -1,0 +1,41 @@
+@startuml
+!theme plain
+
+title Multimodal Semantic Search Flow
+
+actor User
+participant Application
+participant "Ollama - Multimodal Model" as OllamaMulti
+participant "Ollama - Embedding Model" as OllamaEmbed
+database "MongoDB Atlas" as MongoDB
+
+====
+
+User -> Application: sends multimodal request
+activate Application
+
+loop for each input media file
+    Application -> OllamaMulti: sends media file for transcription
+    activate OllamaMulti
+    OllamaMulti --> Application: returns transcripted file
+    deactivate OllamaMulti
+end
+
+Application -> Application: combines transcripted files
+
+Application -> OllamaEmbed: sends combined input to create embedding vector
+activate OllamaEmbed
+OllamaEmbed --> Application: returns embedding vector
+deactivate OllamaEmbed
+
+Application -> MongoDB: sends query with embedding vector
+activate MongoDB
+MongoDB --> Application: returns most similar documents
+deactivate MongoDB
+
+Application --> User: returns most similar documents
+deactivate Application
+
+====
+
+@enduml

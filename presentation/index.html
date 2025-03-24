@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>MongoDB Atlas Hybrid Semantic Search</title>
+    <title>MongoDB Atlas Semantic Search</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/white.min.css">
     <style>
@@ -137,13 +137,13 @@
                 <h2 style="margin: 0 0 5px 0;">Argomenti</h2>
                 <ul style="margin: 0;">
                     <li>Cos'è una ricerca semantica?</li>
-                    <li>Indici vettoriali ibridi
+                    <li>Indici vettoriali
                         <ul style="margin: 1px 0;">
                             <li>Struttura di un indice vettoriale</li>
                             <li>Creazione di un indice vettoriale</li>
                         </ul>
                     </li>
-                    <li>Ricerca vettoriale ibrida
+                    <li>Ricerca vettoriale
                         <ul style="margin: 1px 0;">
                             <li>Ricerca ENN (Exact Nearest Neighbors)</li>
                             <li>Ricerca ANN (Approximate Nearest Neighbors)</li>
@@ -151,26 +151,24 @@
                         </ul>
                     </li>
                     <li>Gestione input multimodale tramite Spring AI</li>
-                    <li>Architettura dell'implementazione di una ricerca semantica</li>
+                    <li>Demo: Ricerca Semantica Multimodale</li>
                     <li>Architettura dell'implementazione di una RAG (Retrieval Augmented Generation)</li>
-                    <li>Demo</li>
+                    <li>Demo: RAG</li>
                 </ul>
             </section>
 
             <!-- Slide 3: Ricerca Semantica -->
             <section>
-                <h2>Cos'è una Ricerca Semantica Ibrida?</h2>
-                <ul>
-                    <li>Combina ricerca tradizionale e semantica</li>
-                    <li>La ricerca tradizionale filtra i risultati su cui andrà ad operare la ricerca semantica</li>
-                    <li>Tramite l'utilizzo di embedding vettoriali la ricerca semantica può comprendere il contesto ed il significato dell'input dell'utente</li>
-                </ul>
+                <h2 style="margin: 0 0 5px 0;">Ricerca Semantica</h2>
+                <div style="display: flex; justify-content: center; align-items: center;">
+                    <img src="images/semantic-search-architecture.png" alt="Semantic Search Architecture" style="max-height: 45vh; width: auto; object-fit: contain;">
+                </div>
             </section>
 
-            <!-- Slide 4: Struttura di un indice vettoriale ibrido -->
+            <!-- Slide 4: Struttura di un indice vettoriale -->
             <section class="index-slide">
-                <h2>Struttura di un indice vettoriale ibrido</h2>
-                <pre style="font-size: 0.6em;"><code class="json">{
+                <h2>Struttura di un indice vettoriale</h2>
+                <pre style="font-size: 0.57em;"><code class="json">{
   <span class="key">"name"</span>: <span class="string">"&lt;name_of_the_index&gt;"</span>,
   <span class="key">"definition"</span>: {
     <span class="key">"fields"</span>: [
@@ -193,10 +191,10 @@
             <!-- Slide 5: Creazione Indice - Atlas -->
             <section class="index-slide">
                 <h2>Creazione Indice Vettoriale con MongoDB Atlas</h2>
-                <pre style="font-size: 0.65em; margin: 5px 0; line-height: 1.2; width: 85%; margin-left: auto; margin-right: auto; padding: 10px; background-color: rgb(246, 248, 250);">
-                    <div style="display: flex; justify-content: space-around; align-items: center;">
-                        <img src="images/atlas-vector-index-1.png" alt="MongoDB Atlas Vector Index Creation Step 1" style="max-height: 33vh; width: auto; object-fit: contain;">
-                        <img src="images/atlas-vector-index-2.png" alt="MongoDB Atlas Vector Index Creation Step 2" style="max-height: 33vh; width: auto; object-fit: contain;">
+                <pre style="font-size: 0.65em; margin: 5px 0; line-height: 0.7; width: 90%; margin-left: auto; margin-right: auto; background-color: rgb(246, 248, 250);">
+                     <div style="display: flex; justify-content: space-around; align-items: center;">
+                         <img src="images/atlas-vector-index-1.png" alt="MongoDB Atlas Vector Index Creation Step 1" style="max-height: 35vh; width: auto; object-fit: contain;">
+                         <img src="images/atlas-vector-index-2.png" alt="MongoDB Atlas Vector Index Creation Step 2" style="max-height: 35vh; width: auto; object-fit: contain;">
                     </div>
                 </pre>
             </section>
@@ -210,7 +208,7 @@
             <!-- Slide 7: Creazione Indice - Mongosh -->
             <section>
                 <h2>Creazione Indice Vettoriale con Mongosh</h2>
-                <pre style="font-size: 0.55em; width: 100%;"><code class="shell"><span class="command">mongosh</span> <span class="string">"mongodb://localhost:27017/&lt;name_of_database&gt;"</span> \
+                <pre style="font-size: 0.48em; width: 90%;"><code class="shell"><span class="command">mongosh</span> <span class="string">"mongodb://localhost:27017/&lt;name_of_database&gt;"</span> \
  --eval '<span class="command">db.getCollection</span>(<span class="string">"commercial-activities"</span>).<span class="command">createSearchIndex</span>(
   <span class="string">"embeddings_town_vector_index"</span>,
   <span class="string">"vectorSearch"</span>,
@@ -234,20 +232,22 @@
 
             <!-- Slide 8: ANN vs ENN -->
             <section>
-                <h2>ANN vs ENN</h2>
+                <h2>Tipi di ricerca</h2>
                 <ul>
-                    <li>ANN (Approximate Nearest Neighbors)</li>
-                    <li>
+                    <li>ENN (Exact Nearest Neighbors)
                         <ul>
-                            <li>Ricerca approssimata</li>
-                            <li>Performance migliori</li>
+                            <li>Prende in esame l'intero spazio vettoriale degli embedding associati ai documenti</li>
+                            <li>Più preciso</li>
+                            <li>Molto costosa computazionalmente</li>
+                            <li>Latenza più alta</li>
                         </ul>
                     </li>
-                    <li>ENN (Exact Nearest Neighbors)</li>
-                    <li>
+                    <li>ANN (Approximate Nearest Neighbors)
                         <ul>
-                            <li>Risultati esatti</li>
-                            <li>Più costoso computazionalmente</li>
+                            <li>Prende in esame solo i k embedding più vicini all'embedding di ricerca utilizzando l' algoritmo HNSW (Hierarchical Navigable Small Worlds)</li>
+                            <li>Ricerca approssimata, richiede tuning per individuare il giusto k</li>
+                            <li>E' potenzialmente meno costosa a livello computazionale</li>
+                            <li>La latenza è potenzialmente più bassa</li>
                         </ul>
                     </li>
                 </ul>
@@ -261,7 +261,8 @@
     <span class="keyword">$vectorSearch</span>: {
       <span class="keyword">index</span>: <span class="string">"embeddings_town_vector_index"</span>,
       <span class="keyword">path</span>: <span class="string">"embeddings"</span>,
-      <span class="keyword">queryVector</span>: [],
+      <span class="keyword">queryVector</span>: [...],
+      <span class="keyword">exact</span>: <span class="boolean">false</span>,
       <span class="keyword">numCandidates</span>: <span class="number">4096</span>,
       <span class="keyword">limit</span>: <span class="number">100</span>,
       <span class="keyword">filter</span>: {
@@ -279,36 +280,24 @@
 ])</code></pre>
             </section>
 
-            <!-- Slide 10: Spring AI -->
+            <!-- Slide 10: Input Multimodale -->
             <section>
-                <h2>Spring AI e Input Multimodale</h2>
+                <h2>Input Multimodale</h2>
                 <ul>
-                    <li>Supporto per diversi tipi di input</li>
-                    <li>
+                    <li>In input è possibile specificare diversi formati:              
                         <ul>
                             <li>Testo</li>
                             <li>Immagini</li>
                             <li>Audio</li>
+                            <li>Video</li>
                         </ul>
-                    </li>
-                    <li>Integrazione con Spring Framework</li>
-                    <li>Processing con modelli AI</li>
-                    <li>Gestione embedding vettoriali</li>
+                    </li>  
+                    <li>Ognuno di questi viene inviato ad un LLM (Large Language Model) che ne trascrive il contenuto in testo.</p>
+                    <li>Il risultato combinato di tutti gli input viene poi utilizzato per la generazione di un embedding di ricerca e confrontato con gli embedding dei documenti su database per rilevare similitudini semantiche e restituire i documenti più pertinenti.</p>
                 </ul>
             </section>
-
-            <!-- Slide 11: RAG -->
-            <section>
-                <h2>Retrieval Augmented Generation (RAG)</h2>
-                <ul>
-                    <li>Combinazione di retrieval e generazione</li>
-                    <li>Utilizzo di knowledge base</li>
-                    <li>Risposta contestuale</li>
-                    <li>Miglioramento accuratezza</li>
-                </ul>
-            </section>
-
-            <!-- Slide 12: Demo: struttura del dato -->
+        
+            <!-- Slide 11: Demo: struttura del dato -->
             <section class="index-slide">
                 <h2>Demo Time</h2>
                 <h4>Struttura del dato</h3>
@@ -329,16 +318,31 @@
 }</code></pre>
             </section>
 
-            <!-- Slide 13: Demo: architettura ricerca semantica-->
+            <!-- Slide 12: Demo: Ingestion documenti -->
             <section>
                 <h2>Demo Time</h2>
-                <h4>Ricerca semantica</h3>
+                <h4>Flusso di ingestion dei documenti</h3>
+                <img src="sequence/ingestion-sequence.png" alt="Document Ingestion Flow" style="max-height: 65vh; width: auto; margin: 10px auto; object-fit: contain;">
             </section>
 
-            <!-- Slide 14: Demo: architettura rag-->
+            <!-- Slide 13: Demo: Ricerca semantica-->
+            <section>
+                <h2>Demo Time</h2>
+                <h4>Ricerca semantica multimodale</h3>
+                <img src="sequence/semantic-search-sequence.png" alt="Multimodal Semantic Search Flow" style="max-height: 65vh; width: auto; margin: 10px auto; object-fit: contain;">
+            </section>
+
+            <!-- Slide 14: RAG -->
+            <section>
+                <h2>Retrieval Augmented Generation (RAG)</h2>
+                <img src="images/rag-architecture.png" alt="RAG Architecture" style="max-height: 65vh; width: auto; margin: 10px auto; object-fit: contain;">
+            </section>
+
+            <!-- Slide 15: Demo: architettura rag-->
             <section>
                 <h2>Demo Time</h2>
                 <h4>RAG</h3>
+                <img src="sequence/rag-sequence.png" alt="RAG Flow" style="max-height: 65vh; width: auto; margin: 10px auto; object-fit: contain;">
             </section>
 
             <!-- Final Thank You Slide -->

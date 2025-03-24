@@ -1,0 +1,31 @@
+@startuml
+!theme plain
+
+title Document Ingestion Flow
+
+actor User
+participant Application
+participant "Ollama - Embedding Model" as Ollama
+database "MongoDB Atlas" as MongoDB
+
+====
+
+User -> Application: sends document data
+activate Application
+
+Application -> Ollama: sends document data to create embedding vector
+activate Ollama
+Ollama --> Application: returns embedding vector
+deactivate Ollama
+
+Application -> MongoDB: sends document data + embedding vector
+activate MongoDB
+MongoDB --> Application: OK
+deactivate MongoDB
+
+Application --> User: OK
+deactivate Application
+
+====
+
+@enduml

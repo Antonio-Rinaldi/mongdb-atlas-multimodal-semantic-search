@@ -1,4 +1,4 @@
-package com.mongodb.atlas.semanticsearch.multimodal.commercialactivities.chat.multimodal;
+package com.mongodb.atlas.semanticsearch.multimodal.commercialactivities.chat;
 
 import com.mongodb.atlas.semanticsearch.multimodal.commercialactivities.model.MediaFile;
 import com.mongodb.atlas.semanticsearch.multimodal.commercialactivities.model.MediaType;

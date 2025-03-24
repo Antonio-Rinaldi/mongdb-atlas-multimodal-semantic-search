@@ -1,7 +1,7 @@
 package com.mongodb.atlas.semanticsearch.multimodal.commercialactivities.service;
 
-import com.mongodb.atlas.semanticsearch.multimodal.commercialactivities.chat.multimodal.MultimodalChat;
-import com.mongodb.atlas.semanticsearch.multimodal.commercialactivities.chat.rag.RagChat;
+import com.mongodb.atlas.semanticsearch.multimodal.commercialactivities.chat.MultimodalChat;
+import com.mongodb.atlas.semanticsearch.multimodal.commercialactivities.chat.RagChat;
 import com.mongodb.atlas.semanticsearch.multimodal.commercialactivities.embedding.EmbeddingCalculator;
 import com.mongodb.atlas.semanticsearch.multimodal.commercialactivities.model.CommercialActivity;
 import com.mongodb.atlas.semanticsearch.multimodal.commercialactivities.model.CommercialActivityWithEmbeddings;

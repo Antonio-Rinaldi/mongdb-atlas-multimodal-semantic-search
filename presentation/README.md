@@ -9,14 +9,13 @@
 
 ## Struttura della presentazione
 
-TODO: Aggiornare la struttura dopo aver finito 
 La presentazione segue la seguente struttura:
-1. Introduzione a MongoDB Atlas
-2. Spiegazione della ricerca semantica ibrida
-3. Concetto di multimodalità
-4. Dettagli sugli indici vettoriali
-5. Implementazione pratica con Compass e Mongosh
-6. Pipeline di aggregazione per ricerca vettoriale
-7. Spring AI e input multimodale
-8. RAG (Retrieval Augmented Generation)
-9. Dimostrazione pratica
+1. Introduzione alla Ricerca Semantica Multimodale con MongoDB Atlas
+3. Cos'è una ricerca semantica?
+4. Indici vettoriali: struttura e creazione (Atlas, Compass, Mongosh)
+5. Tipi di ricerca vettoriale (ENN vs ANN)
+6. Struttura di una Aggregation Pipeline per ricerca vettoriale
+7. Input multimodale e gestione con Spring AI
+8. Demo: struttura del dato, flussi di ingestion e ricerca semantica
+9. Architettura RAG (Retrieval Augmented Generation)
+10. Demo: RAG

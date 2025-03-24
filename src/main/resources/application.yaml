@@ -22,7 +22,7 @@ spring:
           model: gemma3:4b
           temperature: 0f
         rag:
-          model: deepseek-r1:14b
+          model: qwq:32b
 
   data:
     mongodb:

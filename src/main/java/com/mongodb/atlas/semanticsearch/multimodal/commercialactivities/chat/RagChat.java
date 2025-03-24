@@ -1,4 +1,4 @@
-package com.mongodb.atlas.semanticsearch.multimodal.commercialactivities.chat.rag;
+package com.mongodb.atlas.semanticsearch.multimodal.commercialactivities.chat;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;

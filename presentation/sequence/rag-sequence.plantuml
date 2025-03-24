@@ -1,0 +1,47 @@
+@startuml
+!theme plain
+
+title Retrieval Augmented Generation (RAG) Flow
+
+actor User
+participant Application
+participant "Ollama - Multimodal Model" as OllamaMulti
+participant "Ollama - Embedding Model" as OllamaEmbed
+participant "Ollama - RAG Model" as OllamaRag
+database "MongoDB Atlas" as MongoDB
+
+====
+
+User -> Application: sends multimodal request
+activate Application
+
+loop for each input media file
+    Application -> OllamaMulti: sends media file for transcription
+    activate OllamaMulti
+    OllamaMulti --> Application: returns transcripted file
+    deactivate OllamaMulti
+end
+
+Application -> Application: combines transcripted files
+
+Application -> OllamaEmbed: sends combined input to create embedding vector
+activate OllamaEmbed
+OllamaEmbed --> Application: returns embedding vector
+deactivate OllamaEmbed
+
+Application -> MongoDB: sends query with embedding vector
+activate MongoDB
+MongoDB --> Application: returns most similar documents
+deactivate MongoDB
+
+Application -> OllamaRag: sends combined input + most similar documents
+activate OllamaRag
+OllamaRag --> Application: returns augmented response
+deactivate OllamaRag
+
+Application --> User: returns augmented response
+deactivate Application
+
+====
+
+@enduml
