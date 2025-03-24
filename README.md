@@ -1,4 +1,4 @@
-# Mongodb Atlas Hybrid Semantic Search
+# Mongodb Atlas Multimodal Semantic Search
 
 ## Descrizione
 
