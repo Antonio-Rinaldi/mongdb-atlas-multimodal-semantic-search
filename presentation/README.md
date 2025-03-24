@@ -1,4 +1,4 @@
-# MongoDB Atlas Hybrid Semantic Search - Presentazione
+# MongoDB Atlas Multimodal Semantic Search - Presentazione
 
 ## Come utilizzare la presentazione
 
