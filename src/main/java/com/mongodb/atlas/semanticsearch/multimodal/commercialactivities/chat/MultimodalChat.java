@@ -32,11 +32,12 @@ public class MultimodalChat {
     private String getSystemPrompt(String contentType) {
         return MediaType.fromContentType(contentType)
                 .map(mediaType -> switch (mediaType) {
-                    case TEXT -> "Summarize this text trying to keep as much information as possible:";
-                    case IMAGE -> "Explain accurately what do you see in this image:";
-                    case AUDIO -> "Transcribe accurately the content of this audio:";
-                    case VIDEO -> "Describe accurately what do you see in this video:";
+                    case TEXT -> "Describe and summarize this text trying to keep as much information as possible.\n";
+                    case IMAGE -> "Describe and explain accurately what do you see in this image.\n";
+                    case AUDIO -> "Transcribe and describe accurately the content of this audio.\n";
+                    case VIDEO -> "Describe and explain accurately what do you see in this video.\n";
                 })
-                .orElse("Describe accurately the content of this file:");
+                .orElse("Describe accurately the content of this file.\n")
+                .concat("In the response you only have to include the detailed description.\n");
     }
 }

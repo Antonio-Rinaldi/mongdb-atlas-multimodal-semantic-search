@@ -10,27 +10,34 @@
             --mongodb-green: #00ED64;
             --mongodb-dark: #001E2B;
         }
+
         .reveal {
             font-family: 'Euclid Circular A', 'Helvetica Neue', sans-serif;
         }
+
         .reveal h1, .reveal h2 {
             color: var(--mongodb-dark);
         }
+
         .mongodb-logo {
             background: none;
             border: none;
             box-shadow: none;
             max-height: 100px;
         }
+
         .green-text {
             color: var(--mongodb-green);
         }
+
         .dark-text {
             color: var(--mongodb-dark);
         }
+
         .reveal ul {
             list-style-type: none;
         }
+
         .reveal ul li::before {
             content: "•";
             color: var(--mongodb-green);
@@ -39,28 +46,34 @@
             width: 1em;
             margin-left: -1em;
         }
+
         .reveal ul ul {
             margin-left: 30px;
             list-style-type: none;
         }
+
         .reveal ul ul li::before {
             content: "•";
             color: var(--mongodb-green);
         }
+
         .reveal ul li {
             font-size: 0.85em;
             line-height: 1.2;
             margin: 0.1em 0;
         }
+
         .reveal ul li.small-text {
             font-size: 0.8em;
         }
+
         .reveal section {
             height: 100%;
             display: flex;
             flex-direction: column;
             padding: 0;
         }
+
         .reveal pre {
             font-size: 0.65em;
             margin: 5px 0;
@@ -71,42 +84,80 @@
             margin-left: auto;
             margin-right: auto;
         }
+
         .reveal h2 {
             margin: 5px 0;
             font-size: 1.3em;
         }
+
         .reveal code {
             max-height: none !important;
             overflow: visible !important;
         }
+
         .reveal .index-slide {
             display: flex;
             flex-direction: column;
         }
+
         .reveal .index-slide h2 {
             flex: 0 0 auto;
         }
+
         .reveal .index-slide ul {
             flex: 0 0 auto;
             margin: 0;
         }
+
         .reveal .index-slide pre {
             flex: 1 1 auto;
             margin-top: 10px;
         }
+
         .reveal code.json {
             color: #333;
         }
-        .reveal code.json .string { color: #23A33D; }
-        .reveal code.json .number { color: #5100C2; }
-        .reveal code.json .boolean { color: #5100C2; }
-        .reveal code.json .null { color: #5100C2; }
-        .reveal code.json .key { color: #14539A; }
-        .reveal code.shell { color: #333; }
-        .reveal code.shell .string { color: #23A33D; }
-        .reveal code.shell .keyword { color: #14539A; }
-        .reveal code.shell .number { color: #5100C2; }
-        .reveal code.shell .command { color: #001E2B; }
+
+        .reveal code.json .string {
+            color: #23A33D;
+        }
+
+        .reveal code.json .number {
+            color: #5100C2;
+        }
+
+        .reveal code.json .boolean {
+            color: #5100C2;
+        }
+
+        .reveal code.json .null {
+            color: #5100C2;
+        }
+
+        .reveal code.json .key {
+            color: #14539A;
+        }
+
+        .reveal code.shell {
+            color: #333;
+        }
+
+        .reveal code.shell .string {
+            color: #23A33D;
+        }
+
+        .reveal code.shell .keyword {
+            color: #14539A;
+        }
+
+        .reveal code.shell .number {
+            color: #5100C2;
+        }
+
+        .reveal code.shell .command {
+            color: #001E2B;
+        }
+
         .reveal .slide-number {
             font-family: 'Euclid Circular A', 'Helvetica Neue', sans-serif !important;
             font-size: 0.8em !important;
@@ -114,61 +165,65 @@
             background-color: transparent !important;
             padding: 10px !important;
         }
+
         .reveal .controls {
             bottom: 16px !important;
             color: var(--mongodb-dark) !important;
         }
+
         .reveal .controls button {
             color: var(--mongodb-dark) !important;
         }
     </style>
 </head>
 <body>
-    <div class="reveal">
-        <div class="slides">
-            <!-- Slide 1 -->
-            <section>
-                <img src="https://webimages.mongodb.com/_com_assets/cms/mongodb_logo1-76twgcu2dm.png" alt="MongoDB Logo" class="mongodb-logo">
-                <h3 class="dark-text">Ricerca Semantica Multimodale con MongoDB Atlas</h3>
-            </section>
+<div class="reveal">
+    <div class="slides">
+        <!-- Slide 1 -->
+        <section>
+            <img src="https://webimages.mongodb.com/_com_assets/cms/mongodb_logo1-76twgcu2dm.png" alt="MongoDB Logo"
+                 class="mongodb-logo">
+            <h3 class="dark-text">Ricerca Semantica Multimodale con MongoDB Atlas</h3>
+        </section>
 
-            <!-- Slide 2: Introduzione -->
-            <section class="index-slide">
-                <h2 style="margin: 0 0 5px 0;">Argomenti</h2>
-                <ul style="margin: 0;">
-                    <li>Cos'è una ricerca semantica?</li>
-                    <li>Indici vettoriali
-                        <ul style="margin: 1px 0;">
-                            <li>Struttura di un indice vettoriale</li>
-                            <li>Creazione di un indice vettoriale</li>
-                        </ul>
-                    </li>
-                    <li>Ricerca vettoriale
-                        <ul style="margin: 1px 0;">
-                            <li>Ricerca ENN (Exact Nearest Neighbors)</li>
-                            <li>Ricerca ANN (Approximate Nearest Neighbors)</li>
-                            <li>Struttura di una Aggregation Pipeline che insiste su un indice vettoriale</li>
-                        </ul>
-                    </li>
-                    <li>Gestione input multimodale tramite Spring AI</li>
-                    <li>Demo: Ricerca Semantica Multimodale</li>
-                    <li>Architettura dell'implementazione di una RAG (Retrieval Augmented Generation)</li>
-                    <li>Demo: RAG</li>
-                </ul>
-            </section>
+        <!-- Slide 2: Introduzione -->
+        <section class="index-slide">
+            <h2 style="margin: 0 0 5px 0;">Argomenti</h2>
+            <ul style="margin: 0;">
+                <li>Cos'è una ricerca semantica?</li>
+                <li>Indici vettoriali
+                    <ul style="margin: 1px 0;">
+                        <li>Struttura di un indice vettoriale</li>
+                        <li>Creazione di un indice vettoriale</li>
+                    </ul>
+                </li>
+                <li>Ricerca vettoriale
+                    <ul style="margin: 1px 0;">
+                        <li>Ricerca ENN (Exact Nearest Neighbors)</li>
+                        <li>Ricerca ANN (Approximate Nearest Neighbors)</li>
+                        <li>Struttura di una Aggregation Pipeline che insiste su un indice vettoriale</li>
+                    </ul>
+                </li>
+                <li>Gestione input multimodale tramite Spring AI</li>
+                <li>Demo: Ricerca Semantica Multimodale</li>
+                <li>Architettura dell'implementazione di una RAG (Retrieval Augmented Generation)</li>
+                <li>Demo: RAG</li>
+            </ul>
+        </section>
 
-            <!-- Slide 3: Ricerca Semantica -->
-            <section>
-                <h2 style="margin: 0 0 5px 0;">Ricerca Semantica</h2>
-                <div style="display: flex; justify-content: center; align-items: center;">
-                    <img src="images/semantic-search-architecture.png" alt="Semantic Search Architecture" style="max-height: 45vh; width: auto; object-fit: contain;">
-                </div>
-            </section>
+        <!-- Slide 3: Ricerca Semantica -->
+        <section>
+            <h2>Ricerca Semantica</h2>
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <img src="images/semantic-search-architecture.png" alt="Semantic Search Architecture"
+                     style="max-height: 65vh; width: auto; margin: 10px auto; object-fit: contain;">
+            </div>
+        </section>
 
-            <!-- Slide 4: Struttura di un indice vettoriale -->
-            <section class="index-slide">
-                <h2>Struttura di un indice vettoriale</h2>
-                <pre style="font-size: 0.57em;"><code class="json">{
+        <!-- Slide 4: Struttura di un indice vettoriale -->
+        <section class="index-slide">
+            <h2>Struttura di un indice vettoriale</h2>
+            <pre style="font-size: 0.57em;"><code class="json">{
   <span class="key">"name"</span>: <span class="string">"&lt;name_of_the_index&gt;"</span>,
   <span class="key">"definition"</span>: {
     <span class="key">"fields"</span>: [
@@ -186,30 +241,33 @@
     ]
   }
 }</code></pre>
-            </section>
+        </section>
 
-            <!-- Slide 5: Creazione Indice - Atlas -->
-            <section class="index-slide">
-                <h2>Creazione Indice Vettoriale con MongoDB Atlas</h2>
-                <pre style="font-size: 0.65em; margin: 5px 0; line-height: 0.7; width: 90%; margin-left: auto; margin-right: auto; background-color: rgb(246, 248, 250);">
-                     <div style="display: flex; justify-content: space-around; align-items: center;">
-                         <img src="images/atlas-vector-index-1.png" alt="MongoDB Atlas Vector Index Creation Step 1" style="max-height: 35vh; width: auto; object-fit: contain;">
-                         <img src="images/atlas-vector-index-2.png" alt="MongoDB Atlas Vector Index Creation Step 2" style="max-height: 35vh; width: auto; object-fit: contain;">
-                    </div>
-                </pre>
-            </section>
+        <!-- Slide 5: Creazione Indice - Atlas -->
+        <section class="index-slide">
+            <h2>Creazione Indice Vettoriale con MongoDB Atlas</h2>
+            <div style="display: flex; justify-content: space-around; align-items: center; width: 100%; padding: 20px;">
+                <img src="images/atlas-vector-index-1.png" alt="MongoDB Atlas Vector Index Creation Step 1"
+                     style="max-height: 65vh; width: auto; margin: 0 20px; object-fit: contain;">
+                <img src="images/atlas-vector-index-2.png" alt="MongoDB Atlas Vector Index Creation Step 2"
+                     style="max-height: 65vh; width: auto; margin: 0 20px; object-fit: contain;">
+            </div>
+        </section>
 
-            <!-- Slide 6: Creazione Indice - Compass -->
-            <section class="index-slide">
-                <h2>Creazione Indice Vettoriale con MongoDB Compass</h2>
-                <img src="images/compass-vector-index.png" alt="MongoDB Compass Vector Index Creation" style="max-height: 75vh; width: auto; margin: 10px auto; object-fit: contain;">
-            </section>
+        <!-- Slide 6: Creazione Indice - Compass -->
+        <section class="index-slide">
+            <h2>Creazione Indice Vettoriale con MongoDB Compass</h2>
+            <img src="images/compass-vector-index.png" alt="MongoDB Compass Vector Index Creation"
+                 style="max-height: 75vh; width: auto; margin: 10px auto; object-fit: contain;">
+        </section>
 
-            <!-- Slide 7: Creazione Indice - Mongosh -->
-            <section>
-                <h2>Creazione Indice Vettoriale con Mongosh</h2>
-                <pre style="font-size: 0.48em; width: 90%;"><code class="shell"><span class="command">mongosh</span> <span class="string">"mongodb://localhost:27017/&lt;name_of_database&gt;"</span> \
- --eval '<span class="command">db.getCollection</span>(<span class="string">"commercial-activities"</span>).<span class="command">createSearchIndex</span>(
+        <!-- Slide 7: Creazione Indice - Mongosh -->
+        <section>
+            <h2>Creazione Indice Vettoriale con Mongosh</h2>
+            <pre style="font-size: 0.48em; width: 90%;"><code class="shell"><span class="command">mongosh</span> <span
+                    class="string">"mongodb://localhost:27017/&lt;name_of_database&gt;"</span> \
+ --eval '<span class="command">db.getCollection</span>(<span class="string">"commercial-activities"</span>).<span
+                        class="command">createSearchIndex</span>(
   <span class="string">"embeddings_town_vector_index"</span>,
   <span class="string">"vectorSearch"</span>,
   {
@@ -228,35 +286,39 @@
     ]
   }
 )'</code></pre>
-            </section>
+        </section>
 
-            <!-- Slide 8: ANN vs ENN -->
-            <section>
-                <h2>Tipi di ricerca</h2>
-                <ul>
-                    <li>ENN (Exact Nearest Neighbors)
-                        <ul>
-                            <li>Prende in esame l'intero spazio vettoriale degli embedding associati ai documenti</li>
-                            <li>Più preciso</li>
-                            <li>Molto costosa computazionalmente</li>
-                            <li>Latenza più alta</li>
-                        </ul>
-                    </li>
-                    <li>ANN (Approximate Nearest Neighbors)
-                        <ul>
-                            <li>Prende in esame solo i k embedding più vicini all'embedding di ricerca utilizzando l' algoritmo HNSW (Hierarchical Navigable Small Worlds)</li>
-                            <li>Ricerca approssimata, richiede tuning per individuare il giusto k</li>
-                            <li>E' potenzialmente meno costosa a livello computazionale</li>
-                            <li>La latenza è potenzialmente più bassa</li>
-                        </ul>
-                    </li>
-                </ul>
-            </section>
+        <!-- Slide 8: ANN vs ENN -->
+        <section>
+            <h2>Tipi di ricerca</h2>
+            <ul>
+                <li>ENN (Exact Nearest Neighbors)
+                    <ul>
+                        <li>Prende in esame l'intero spazio vettoriale degli embedding associati ai documenti</li>
+                        <li>Più preciso</li>
+                        <li>Molto costosa computazionalmente</li>
+                        <li>Latenza più alta</li>
+                    </ul>
+                </li>
+                <li>ANN (Approximate Nearest Neighbors)
+                    <ul>
+                        <li>Prende in esame solo i k embedding più vicini all'embedding di ricerca utilizzando l'
+                            algoritmo HNSW (Hierarchical Navigable Small Worlds)
+                        </li>
+                        <li>Ricerca approssimata, richiede tuning per individuare il giusto k</li>
+                        <li>E' potenzialmente meno costosa a livello computazionale</li>
+                        <li>La latenza è potenzialmente più bassa</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
 
-            <!-- Slide 9: Aggregation Pipeline -->
-            <section class="index-slide">
-                <h2 style="margin: 0 0 5px 0;">Aggregation Pipeline per Ricerca Vettoriale</h2>
-                <pre style="font-size: 0.5em; width: 100%; line-height: 1.1; margin: 0;"><code class="shell"><span class="command">db.getCollection</span>(<span class="string">'commercial-activities'</span>).<span class="command">aggregate</span>([
+        <!-- Slide 9: Aggregation Pipeline -->
+        <section class="index-slide">
+            <h2 style="margin: 0 0 5px 0;">Aggregation Pipeline per Ricerca Vettoriale</h2>
+            <pre style="font-size: 0.5em; width: 100%; line-height: 1.1; margin: 0;"><code class="shell"><span
+                    class="command">db.getCollection</span>(<span class="string">'commercial-activities'</span>).<span
+                    class="command">aggregate</span>([
   {
     <span class="keyword">$vectorSearch</span>: {
       <span class="keyword">index</span>: <span class="string">"embeddings_town_vector_index"</span>,
@@ -266,7 +328,8 @@
       <span class="keyword">numCandidates</span>: <span class="number">4096</span>,
       <span class="keyword">limit</span>: <span class="number">100</span>,
       <span class="keyword">filter</span>: {
-        <span class="keyword">$and</span>: [{ <span class="keyword">town</span>: <span class="string">"&lt;town&gt;"</span> }]
+        <span class="keyword">$and</span>: [{ <span class="keyword">town</span>: <span
+                        class="string">"&lt;town&gt;"</span> }]
       }
     }
   },
@@ -274,33 +337,37 @@
     <span class="keyword">$project</span>: {
       <span class="keyword">_id</span>: <span class="number">0</span>,
       <span class="keyword">embeddings</span>: <span class="number">0</span>,
-      <span class="keyword">score</span>: { <span class="keyword">$meta</span>: <span class="string">"vectorSearchScore"</span> }
+      <span class="keyword">score</span>: { <span class="keyword">$meta</span>: <span
+                        class="string">"vectorSearchScore"</span> }
     }
   }
 ])</code></pre>
-            </section>
+        </section>
 
-            <!-- Slide 10: Input Multimodale -->
-            <section>
-                <h2>Input Multimodale</h2>
-                <ul>
-                    <li>In input è possibile specificare diversi formati:              
-                        <ul>
-                            <li>Testo</li>
-                            <li>Immagini</li>
-                            <li>Audio</li>
-                            <li>Video</li>
-                        </ul>
-                    </li>  
-                    <li>Ognuno di questi viene inviato ad un LLM (Large Language Model) che ne trascrive il contenuto in testo.</p>
-                    <li>Il risultato combinato di tutti gli input viene poi utilizzato per la generazione di un embedding di ricerca e confrontato con gli embedding dei documenti su database per rilevare similitudini semantiche e restituire i documenti più pertinenti.</p>
-                </ul>
-            </section>
-        
-            <!-- Slide 11: Demo: struttura del dato -->
-            <section class="index-slide">
-                <h2>Demo Time</h2>
-                <h4>Struttura del dato</h3>
+        <!-- Slide 10: Input Multimodale -->
+        <section>
+            <h2>Input Multimodale</h2>
+            <ul>
+                <li>In input è possibile specificare diversi formati:
+                    <ul>
+                        <li>Testo</li>
+                        <li>Immagini</li>
+                        <li>Audio</li>
+                        <li>Video</li>
+                    </ul>
+                </li>
+                <li>Ognuno di questi viene inviato ad un LLM (Large Language Model) che ne trascrive il contenuto in
+                    testo.</p>
+                <li>Il risultato combinato di tutti gli input viene poi utilizzato per la generazione di un embedding di
+                    ricerca e confrontato con gli embedding dei documenti su database per rilevare similitudini
+                    semantiche e restituire i documenti più pertinenti.</p>
+            </ul>
+        </section>
+
+        <!-- Slide 11: Demo: struttura del dato -->
+        <section class="index-slide">
+            <h2>Demo Time</h2>
+            <h4>Struttura del dato</h3>
                 <pre style="font-size: 0.55em;"><code class="json">{
   <span class="key">"_id"</span>: {
     <span class="key">"$oid"</span>: <span class="string">"67e00f2606c832793e91f48c"</span>
@@ -316,59 +383,64 @@
   <span class="key">"description"</span>: <span class="string">"Professionale palestra centrale..."</span>,
   <span class="key">"embeddings"</span>: [<span class="string">...</span>]
 }</code></pre>
-            </section>
+        </section>
 
-            <!-- Slide 12: Demo: Ingestion documenti -->
-            <section>
-                <h2>Demo Time</h2>
-                <h4>Flusso di ingestion dei documenti</h3>
-                <img src="sequence/ingestion-sequence.png" alt="Document Ingestion Flow" style="max-height: 65vh; width: auto; margin: 10px auto; object-fit: contain;">
-            </section>
+        <!-- Slide 12: Demo: Ingestion documenti -->
+        <section>
+            <h2>Demo Time</h2>
+            <h4>Flusso di ingestion dei documenti</h3>
+                <img src="sequence/ingestion-sequence.png" alt="Document Ingestion Flow"
+                     style="max-height: 65vh; width: auto; margin: 10px auto; object-fit: contain;">
+        </section>
 
-            <!-- Slide 13: Demo: Ricerca semantica-->
-            <section>
-                <h2>Demo Time</h2>
-                <h4>Ricerca semantica multimodale</h3>
-                <img src="sequence/semantic-search-sequence.png" alt="Multimodal Semantic Search Flow" style="max-height: 65vh; width: auto; margin: 10px auto; object-fit: contain;">
-            </section>
+        <!-- Slide 13: Demo: Ricerca semantica-->
+        <section>
+            <h2>Demo Time</h2>
+            <h4>Ricerca semantica multimodale</h3>
+                <img src="sequence/semantic-search-sequence.png" alt="Multimodal Semantic Search Flow"
+                     style="max-height: 65vh; width: auto; margin: 10px auto; object-fit: contain;">
+        </section>
 
-            <!-- Slide 14: RAG -->
-            <section>
-                <h2>Retrieval Augmented Generation (RAG)</h2>
-                <img src="images/rag-architecture.png" alt="RAG Architecture" style="max-height: 65vh; width: auto; margin: 10px auto; object-fit: contain;">
-            </section>
+        <!-- Slide 14: RAG -->
+        <section>
+            <h2>Retrieval Augmented Generation (RAG)</h2>
+            <img src="images/rag-architecture.png" alt="RAG Architecture"
+                 style="max-height: 65vh; width: auto; margin: 10px auto; object-fit: contain;">
+        </section>
 
-            <!-- Slide 15: Demo: architettura rag-->
-            <section>
-                <h2>Demo Time</h2>
-                <h4>RAG</h3>
-                <img src="sequence/rag-sequence.png" alt="RAG Flow" style="max-height: 65vh; width: auto; margin: 10px auto; object-fit: contain;">
-            </section>
+        <!-- Slide 15: Demo: architettura rag-->
+        <section>
+            <h2>Demo Time</h2>
+            <h4>RAG</h3>
+                <img src="sequence/rag-sequence.png" alt="RAG Flow"
+                     style="max-height: 65vh; width: auto; margin: 10px auto; object-fit: contain;">
+        </section>
 
-            <!-- Final Thank You Slide -->
-            <section>
-                <img src="https://webimages.mongodb.com/_com_assets/cms/mongodb_logo1-76twgcu2dm.png" alt="MongoDB Logo" class="mongodb-logo">
-                <h3 class="dark-text">Ricerca Semantica Multimodale con MongoDB Atlas</h3>
-                <h1 style="margin-top: 30px;">Grazie per l'attenzione!</h2>
-            </section>
+        <!-- Final Thank You Slide -->
+        <section>
+            <img src="https://webimages.mongodb.com/_com_assets/cms/mongodb_logo1-76twgcu2dm.png" alt="MongoDB Logo"
+                 class="mongodb-logo">
+            <h3 class="dark-text">Ricerca Semantica Multimodale con MongoDB Atlas</h3>
+            <h1 style="margin-top: 30px;">Grazie per l'attenzione!</h2>
+        </section>
 
-        </div>
     </div>
+</div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
-    <script>
-        Reveal.initialize({
-            controls: true,
-            controlsLayout: 'edges',
-            controlsBackArrows: 'visible',
-            progress: true,
-            center: true,
-            hash: true,
-            slideNumber: {
-                format: '%current%',
-                position: 'right'
-            }
-        });
-    </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+<script>
+    Reveal.initialize({
+        controls: true,
+        controlsLayout: 'edges',
+        controlsBackArrows: 'visible',
+        progress: true,
+        center: true,
+        hash: true,
+        slideNumber: {
+            format: '%current%',
+            position: 'right'
+        }
+    });
+</script>
 </body>
 </html>

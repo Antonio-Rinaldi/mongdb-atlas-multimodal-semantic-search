@@ -5,4 +5,4 @@ spring:
   data:
     mongodb:
       uri: mongodb://localhost:27017/?retryWrites=true&w=majority&directConnection=true
-      database: mongodb-atlas-multimodal-semantic-vector-search
+      database: multimodal-semantic-vector-search
