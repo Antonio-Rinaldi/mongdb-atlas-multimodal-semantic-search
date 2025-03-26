@@ -26,7 +26,7 @@ public class MultimodalChat {
                         ))
                 .stream()
                 .content();
-        return Flux.concat(response, Flux.just("\n\n"));
+        return Flux.concat(response, Flux.just("\n"));
     }
 
     private String getSystemPrompt(String contentType) {

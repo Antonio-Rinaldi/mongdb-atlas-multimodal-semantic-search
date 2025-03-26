@@ -309,19 +309,22 @@
                 <li>ENN (Exact Nearest Neighbors)
                     <ul>
                         <li>Prende in esame l'intero spazio vettoriale degli embedding associati ai documenti</li>
-                        <li>Più preciso</li>
-                        <li>Molto costosa computazionalmente</li>
+                        <li>Più precisa (100% di precisione)</li>
+                        <li>Molto costosa computazionalmente, O(n) per la ricerca</li>
                         <li>Latenza più alta</li>
                     </ul>
                 </li>
                 <li>ANN (Approximate Nearest Neighbors)
                     <ul>
-                        <li>Prende in esame solo i k embedding più vicini all'embedding di ricerca utilizzando l'
-                            algoritmo HNSW (Hierarchical Navigable Small Worlds)
+                        <li>Tramite l'algoritmo HNSW (Hierarchical Navigable Small Worlds) vengono recuperati i k
+                            embedding più vicini all'embedding di ricerca.
                         </li>
-                        <li>Ricerca approssimata, richiede tuning per individuare il giusto k</li>
-                        <li>E' potenzialmente meno costosa a livello computazionale</li>
-                        <li>La latenza è potenzialmente più bassa</li>
+                        <li>
+                            I k embedding vengono confrontati tra loro per determinare i candidati più adatti.
+                        </li>
+                        <li>Leggermente meno precisa (95-99% precisione)</li>
+                        <li>Meno costosa computazionalmente, O(log(n)) per la ricerca + O(k) per il confronto</li>
+                        <li>La latenza è più bassa</li>
                     </ul>
                 </li>
             </ul>
@@ -371,17 +374,17 @@
                     </ul>
                 </li>
                 <li>Ognuno di questi viene inviato ad un LLM (Large Language Model) che ne trascrive il contenuto in
-                    testo.</p>
+                    testo.</li>
                 <li>Il risultato combinato di tutti gli input viene poi utilizzato per la generazione di un embedding di
                     ricerca e confrontato con gli embedding dei documenti su database per rilevare similitudini
-                    semantiche e restituire i documenti più pertinenti.</p>
+                    semantiche e restituire i documenti più pertinenti.</li>
             </ul>
         </section>
 
         <!-- Slide 11: Demo: struttura del dato -->
         <section class="index-slide">
             <h2>Demo Time</h2>
-            <h4>Struttura del dato</h3>
+            <h4>Struttura del dato</h4>
                 <pre style="font-size: 0.55em;"><code class="json">{
   <span class="key">"_id"</span>: {
     <span class="key">"$oid"</span>: <span class="string">"67e00f2606c832793e91f48c"</span>
@@ -402,7 +405,7 @@
         <!-- Slide 12: Demo: Ingestion documenti -->
         <section>
             <h2>Demo Time</h2>
-            <h4>Flusso di ingestion dei documenti</h3>
+            <h4>Flusso di ingestion dei documenti</h4>
                 <img src="sequence/ingestion-sequence.png" alt="Document Ingestion Flow"
                      style="max-height: 65vh; width: auto; margin: 10px auto; object-fit: contain;">
         </section>
@@ -410,7 +413,7 @@
         <!-- Slide 13: Demo: Ricerca semantica-->
         <section>
             <h2>Demo Time</h2>
-            <h4>Ricerca semantica multimodale</h3>
+            <h4>Ricerca semantica multimodale</h4>
                 <img src="sequence/semantic-search-sequence.png" alt="Multimodal Semantic Search Flow"
                      style="max-height: 65vh; width: auto; margin: 10px auto; object-fit: contain;">
         </section>
@@ -425,7 +428,7 @@
         <!-- Slide 15: Demo: architettura rag-->
         <section>
             <h2>Demo Time</h2>
-            <h4>RAG</h3>
+            <h4>RAG</h4>
                 <img src="sequence/rag-sequence.png" alt="RAG Flow"
                      style="max-height: 65vh; width: auto; margin: 10px auto; object-fit: contain;">
         </section>
@@ -435,7 +438,7 @@
             <img src="https://webimages.mongodb.com/_com_assets/cms/mongodb_logo1-76twgcu2dm.png" alt="MongoDB Logo"
                  class="mongodb-logo">
             <h3 class="dark-text">Ricerca Semantica Multimodale con MongoDB Atlas</h3>
-            <h1 style="margin-top: 30px;">Grazie per l'attenzione!</h2>
+            <h2 style="margin-top: 30px;">Grazie per l'attenzione!</h2>
         </section>
 
     </div>

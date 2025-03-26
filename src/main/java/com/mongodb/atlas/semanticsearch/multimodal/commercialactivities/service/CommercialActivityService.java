@@ -57,7 +57,7 @@ public class CommercialActivityService {
 
     private String getMultimodalUserInput(MultimodalSearch multimodalSearch) {
         StringBuilder multimodalUserInput = new StringBuilder();
-        // Handle text input if present
+        // Handle text input
         multimodalUserInput.append(multimodalSearch.getText());
         multimodalUserInput.append("\n\n");
         // Handle media content
