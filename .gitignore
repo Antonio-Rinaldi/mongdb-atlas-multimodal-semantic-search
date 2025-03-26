@@ -33,3 +33,4 @@ build/
 .vscode/
 /.venv/
 /src/main/resources/application-mongodb-atlas.yaml
+/presentation/converter/node_modules/

@@ -51,7 +51,7 @@ public class CommercialActivityService {
         String multimodalUserInput = getMultimodalUserInput(multimodalSearch);
         float[] embeddings = embeddingCalculator.generateEmbedding(multimodalUserInput);
         List<CommercialActivity> commercialActivities =
-                commercialActivityDatabase.findSimilarCommercialActivitiesByTown(town, embeddings, 20);
+                commercialActivityDatabase.findSimilarCommercialActivitiesByTown(town, embeddings, 10);
         return ragChat.exchange(multimodalUserInput, commercialActivities);
     }
 

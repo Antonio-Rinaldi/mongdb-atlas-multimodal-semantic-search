@@ -16,22 +16,31 @@ public class RagChat {
     private final ObjectMapper jsonMapper;
     private final ChatClient ragChatClient;
 
-    @SneakyThrows
     public Flux<String> exchange(String userPrompt, List<?> objects) {
-        StringBuilder systemPrompt = new StringBuilder();
-        systemPrompt.append("You are a helpful chatbot.\n");
-        systemPrompt.append("Use only the following pieces of context to answer the question.\n");
-        systemPrompt.append("Don't make up any new information:\n");
+        return ragChatClient.prompt()
+                .system(buildSystemPrompt(objects))
+                .user(userPrompt)
+                .stream()
+                .content();
+    }
 
+    @SneakyThrows
+    private String buildSystemPrompt(List<?> objects) {
+        StringBuilder systemPrompt = new StringBuilder("You are a helpful chatbot.\n");
+        systemPrompt.append("You always give detailed and professional answers.\n");
+        if (objects.isEmpty()) {
+            systemPrompt.append("You don't have any additional context on the subject requested by the user.\n");
+            systemPrompt.append("You can answer to user input only using what you already know.\n");
+            systemPrompt.append("Don't make up any new information if you don't know what to answer.\n");
+            return systemPrompt.toString();
+        }
+        systemPrompt.append("Use the following pieces of information along with your own knowledge to elaborate and answer the question.\n");
         for (Object object: objects) {
             String json = jsonMapper.writeValueAsString(object);
             systemPrompt.append(json);
             systemPrompt.append("\n");
         }
-        return ragChatClient.prompt()
-                .system(systemPrompt.toString())
-                .user(userPrompt)
-                .stream()
-                .content();
+        systemPrompt.append("Don't make up any new information if you don't know what to answer.\n");
+        return systemPrompt.toString();
     }
 }

@@ -1,0 +1,525 @@
+{
+	"info": {
+		"_postman_id": "ac59648f-a945-4498-8880-bb328da277a9",
+		"name": "Demo - Mongodb Atlas Multimodal Semantic Search",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43480407",
+		"_collection_link": "https://bk-201-8180550.postman.co/workspace/BK-201's-Workspace~77293d7d-1f92-4b62-8af4-5e9ed4218705/collection/43480407-ac59648f-a945-4498-8880-bb328da277a9?action=share&source=collection_link&creator=43480407"
+	},
+	"item": [
+		{
+			"name": "Ricerca Semantica - Esempio 1 - Formato di input: Testo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "text",
+							"value": "I would really like to drink a beer, where should i go?",
+							"type": "text"
+						},
+						{
+							"key": "media",
+							"value": "string",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/commercial-activities/search?town=Roma&numberOfResults=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"commercial-activities",
+						"search"
+					],
+					"query": [
+						{
+							"key": "town",
+							"value": "Roma"
+						},
+						{
+							"key": "numberOfResults",
+							"value": "10"
+						}
+					]
+				},
+				"description": "Generated from cURL: curl -X 'POST' \\\n  'http://localhost:8080/api/v1/commercial-activities/search?town=Roma&numberOfResults=10' \\\n  -H 'accept: application/json' \\\n  -H 'Content-Type: multipart/form-data' \\\n  -F 'text=I would really like to drink a beer, where should i go?' \\\n  -F 'media=string' | json_pp"
+			},
+			"response": []
+		},
+		{
+			"name": "Ricerca Semantica - Esempio 2 - Formato di input: Testo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "text",
+							"value": "I would really like to buy some chocolate, where should i go?",
+							"type": "text"
+						},
+						{
+							"key": "media",
+							"value": "string",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/commercial-activities/search?town=Roma&numberOfResults=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"commercial-activities",
+						"search"
+					],
+					"query": [
+						{
+							"key": "town",
+							"value": "Roma"
+						},
+						{
+							"key": "numberOfResults",
+							"value": "10"
+						}
+					]
+				},
+				"description": "Generated from cURL: curl -X 'POST' \\\n  'http://localhost:8080/api/v1/commercial-activities/search?town=Roma&numberOfResults=10' \\\n  -H 'accept: application/json' \\\n  -H 'Content-Type: multipart/form-data' \\\n  -F 'text=I would really like to buy some chocolate, where should i go?' \\\n  -F 'media=string' | json_pp"
+			},
+			"response": []
+		},
+		{
+			"name": "Ricerca Semantica - Esempio 3 - Formato di input: Testo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "text",
+							"value": "I would really like to find an activity that sells both beer and chocolate, where should i go?",
+							"type": "text"
+						},
+						{
+							"key": "media",
+							"value": "string",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/commercial-activities/search?town=Roma&numberOfResults=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"commercial-activities",
+						"search"
+					],
+					"query": [
+						{
+							"key": "town",
+							"value": "Roma"
+						},
+						{
+							"key": "numberOfResults",
+							"value": "10"
+						}
+					]
+				},
+				"description": "Generated from cURL: curl -X 'POST' \\\n  'http://localhost:8080/api/v1/commercial-activities/search?town=Roma&numberOfResults=10' \\\n  -H 'accept: application/json' \\\n  -H 'Content-Type: multipart/form-data' \\\n  -F 'text=I would really like to find an activity that sells both beer and chocolate, where should i go?' \\\n  -F 'media=string' | json_pp"
+			},
+			"response": []
+		},
+		{
+			"name": "Ricerca Semantica - Esempio 4 - Formato di input: Testo + Immagine",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "text",
+							"value": "I would really like to find an activity that sells this, where should i go?",
+							"type": "text"
+						},
+						{
+							"key": "media",
+							"contentType": "image/png",
+							"type": "file",
+							"src": "postman-cloud:///1f009e46-acb7-4ec0-8f52-bd437193a1f0"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/commercial-activities/search?town=Roma&numberOfResults=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"commercial-activities",
+						"search"
+					],
+					"query": [
+						{
+							"key": "town",
+							"value": "Roma"
+						},
+						{
+							"key": "numberOfResults",
+							"value": "10"
+						}
+					]
+				},
+				"description": "Generated from cURL: curl -X 'POST' \\\n  'http://localhost:8080/api/v1/commercial-activities/search?town=Roma&numberOfResults=10' \\\n  -H 'accept: application/json' \\\n  -H 'Content-Type: multipart/form-data' \\\n  -F 'text=I would really like to find an activity that sells this, where should i go?' \\\n  -F 'media=@./examples/Beer.png;type=image/png' | json_pp"
+			},
+			"response": []
+		},
+		{
+			"name": "Ricerca Semantica - Esempio 5 - Formato di input: Testo + Immagine",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "text",
+							"value": "I want to become like him, where should i go?",
+							"type": "text"
+						},
+						{
+							"key": "media",
+							"contentType": "image/jpeg",
+							"type": "file",
+							"src": "postman-cloud:///1f009e47-c628-4430-b5c0-f19efa0b1d3b"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/commercial-activities/search?town=Roma&numberOfResults=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"commercial-activities",
+						"search"
+					],
+					"query": [
+						{
+							"key": "town",
+							"value": "Roma"
+						},
+						{
+							"key": "numberOfResults",
+							"value": "10"
+						}
+					]
+				},
+				"description": "Generated from cURL: curl -X 'POST' \\\n  'http://localhost:8080/api/v1/commercial-activities/search?town=Roma&numberOfResults=10' \\\n  -H 'accept: application/json' \\\n  -H 'Content-Type: multipart/form-data' \\\n  -F 'text=I want to become like him, where should i go?' \\\n  -F 'media=@./examples/Arnold.jpg;type=image/jpeg' | json_pp"
+			},
+			"response": []
+		},
+		{
+			"name": "RAG - Esempio 1 - Formato di input: Testo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "text",
+							"value": "I would really like to drink a beer, where should i go?",
+							"type": "text"
+						},
+						{
+							"key": "media",
+							"value": "string",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/commercial-activities/rag?town=Roma",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"commercial-activities",
+						"rag"
+					],
+					"query": [
+						{
+							"key": "town",
+							"value": "Roma"
+						}
+					]
+				},
+				"description": "Generated from cURL: curl -X 'POST' \\\n  'http://localhost:8080/api/v1/commercial-activities/rag?town=Roma' \\\n  -H 'accept: application/json' \\\n  -H 'Content-Type: multipart/form-data' \\\n  -F 'text=I would really like to drink a beer, where should i go?' \\\n  -F 'media=string' "
+			},
+			"response": []
+		},
+		{
+			"name": "RAG - Esempio 2 - Formato di input: Testo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "text",
+							"value": "I would really like to buy some chocolate, where should i go?",
+							"type": "text"
+						},
+						{
+							"key": "media",
+							"value": "string",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/commercial-activities/rag?town=Roma",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"commercial-activities",
+						"rag"
+					],
+					"query": [
+						{
+							"key": "town",
+							"value": "Roma"
+						}
+					]
+				},
+				"description": "Generated from cURL: curl -X 'POST' \\\n  'http://localhost:8080/api/v1/commercial-activities/rag?town=Roma' \\\n  -H 'accept: application/json' \\\n  -H 'Content-Type: multipart/form-data' \\\n  -F 'text=I would really like to buy some chocolate, where should i go?' \\\n  -F 'media=string'"
+			},
+			"response": []
+		},
+		{
+			"name": "RAG - Esempio 3 - Formato di input: Testo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "text",
+							"value": "I would really like to find an activity that sells both beer and chocolate, where should i go?",
+							"type": "text"
+						},
+						{
+							"key": "media",
+							"value": "string",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/commercial-activities/rag?town=Roma",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"commercial-activities",
+						"rag"
+					],
+					"query": [
+						{
+							"key": "town",
+							"value": "Roma"
+						}
+					]
+				},
+				"description": "Generated from cURL: curl -X 'POST' \\\n  'http://localhost:8080/api/v1/commercial-activities/rag?town=Roma' \\\n  -H 'accept: application/json' \\\n  -H 'Content-Type: multipart/form-data' \\\n  -F 'text=I would really like to find an activity that sells both beer and chocolate, where should i go?' \\\n  -F 'media=string'"
+			},
+			"response": []
+		},
+		{
+			"name": "RAG - Esempio 4 - Formato di input: Testo + Immagine",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "text",
+							"value": "I would really like to find an activity that sells this, where should i go?",
+							"type": "text"
+						},
+						{
+							"key": "media",
+							"contentType": "image/png",
+							"type": "file",
+							"src": "postman-cloud:///1f009e46-acb7-4ec0-8f52-bd437193a1f0"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/commercial-activities/rag?town=Roma",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"commercial-activities",
+						"rag"
+					],
+					"query": [
+						{
+							"key": "town",
+							"value": "Roma"
+						}
+					]
+				},
+				"description": "Generated from cURL: curl -X 'POST' \\\n  'http://localhost:8080/api/v1/commercial-activities/rag?town=Roma' \\\n  -H 'accept: application/json' \\\n  -H 'Content-Type: multipart/form-data' \\\n  -F 'text=I would really like to find an activity that sells this, where should i go?' \\\n  -F 'media=@./examples/Beer.png;type=image/png' "
+			},
+			"response": []
+		},
+		{
+			"name": "RAG - Esempio 5 - Formato di input: Testo + Immagine",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "text",
+							"value": "I want to become like him, where should i go?",
+							"type": "text"
+						},
+						{
+							"key": "media",
+							"contentType": "image/jpeg",
+							"type": "file",
+							"src": "postman-cloud:///1f009e47-c628-4430-b5c0-f19efa0b1d3b"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/commercial-activities/rag?town=Roma",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"commercial-activities",
+						"rag"
+					],
+					"query": [
+						{
+							"key": "town",
+							"value": "Roma"
+						}
+					]
+				},
+				"description": "Generated from cURL: curl -X 'POST' \\\n  'http://localhost:8080/api/v1/commercial-activities/rag?town=Roma' \\\n  -H 'accept: application/json' \\\n  -H 'Content-Type: multipart/form-data' \\\n  -F 'text=I want to become like him, where should i go?' \\\n  -F 'media=@./examples/Arnold.jpg;type=image/jpeg'"
+			},
+			"response": []
+		}
+	]
+}

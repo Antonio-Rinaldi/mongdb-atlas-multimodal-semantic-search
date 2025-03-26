@@ -174,6 +174,21 @@
         .reveal .controls button {
             color: var(--mongodb-dark) !important;
         }
+
+        .responsive-image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: clamp(300px, 50vh, 600px);
+            margin: 20px auto;
+            width: 100%;
+        }
+
+        .responsive-image-container img {
+            max-width: clamp(280px, 85%, 900px);
+            height: auto;
+            object-fit: contain;
+        }
     </style>
 </head>
 <body>
@@ -214,9 +229,8 @@
         <!-- Slide 3: Ricerca Semantica -->
         <section>
             <h2>Ricerca Semantica</h2>
-            <div style="display: flex; justify-content: center; align-items: center;">
-                <img src="images/semantic-search-architecture.png" alt="Semantic Search Architecture"
-                     style="max-height: 65vh; width: auto; margin: 10px auto; object-fit: contain;">
+            <div class="responsive-image-container">
+                <img src="images/semantic-search-architecture.png" alt="Semantic Search Architecture">
             </div>
         </section>
 
@@ -246,11 +260,11 @@
         <!-- Slide 5: Creazione Indice - Atlas -->
         <section class="index-slide">
             <h2>Creazione Indice Vettoriale con MongoDB Atlas</h2>
-            <div style="display: flex; justify-content: space-around; align-items: center; width: 100%; padding: 20px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: center;">
                 <img src="images/atlas-vector-index-1.png" alt="MongoDB Atlas Vector Index Creation Step 1"
-                     style="max-height: 65vh; width: auto; margin: 0 20px; object-fit: contain;">
+                     style="max-height: 65vh; width: auto; margin: 10px auto; object-fit: contain;">
                 <img src="images/atlas-vector-index-2.png" alt="MongoDB Atlas Vector Index Creation Step 2"
-                     style="max-height: 65vh; width: auto; margin: 0 20px; object-fit: contain;">
+                     style="max-height: 65vh; width: auto; margin: 10px auto; object-fit: contain;">
             </div>
         </section>
 

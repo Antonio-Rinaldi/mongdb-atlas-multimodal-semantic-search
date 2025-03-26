@@ -43,8 +43,6 @@ docker-compose -f .ci/docker-compose.yml up -d
 
 Fa partire ollama
 ```shell
-# cd to project root
-cd ..
 # Start ollama server
 ollama serve
 ```
@@ -55,12 +53,10 @@ In base alla potenza delle vostre macchine potete scaricare modelli più grandi 
 Come modello per gestire l'input multimodale potete usare: gemma3:4b, gemma3:12b o gemma3:27b
 Come modello per fare RAG potete usare: deepseek-r1:7b, deepseek-r1:14b, deepseek-r1:32b o qwq:32b
 ```shell
-# cd to project root
-cd ..
 # Pull embedding model
 ollama pull bge-m3:567m
 # Pull the model used to handle multimodal inputs
-ollama pull gemma3:1b
+ollama pull gemma3:4b
 # Pull the model used for RAG 
 ollama pull deepseek-r1:1.5b
 ```
@@ -75,7 +71,7 @@ mvn clean package
 java -jar -Dspring.profiles.active=local target/commercial-activities-1.0.0-SNAPSHOT.jar
 ```
 
-Fa partire uno script per popolare il database (potrebbe richiedere fino a 15-20 minuti)
+Fa partire uno script per popolare il database (operazione molto lenta)
 ```shell
 # cd to project root
 cd ..
@@ -92,7 +88,6 @@ python .ci/scripts/init/generate_activities.py
 ### Ricerca semantica
 
 #### Esempio 1 - Formato di input: Testo
-
 ```shell
 curl -X 'POST' \
   'http://localhost:8080/api/v1/commercial-activities/search?town=Roma&numberOfResults=10' \
@@ -105,11 +100,11 @@ curl -X 'POST' \
 #### Esempio 2 - Formato di input: Testo
 ```shell
 curl -X 'POST' \
-'http://localhost:8080/api/v1/commercial-activities/search?town=Roma&numberOfResults=10' \
--H 'accept: application/json' \
--H 'Content-Type: multipart/form-data' \
--F 'text=I would really like to buy some chocolate, where should i go?' \
--F 'media=string' | json_pp
+  'http://localhost:8080/api/v1/commercial-activities/search?town=Roma&numberOfResults=10' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: multipart/form-data' \
+  -F 'text=I would really like to buy some chocolate, where should i go?' \
+  -F 'media=string' | json_pp
 ```
 
 ### Esempio 3 - Formato di input: Testo
@@ -118,7 +113,7 @@ curl -X 'POST' \
   'http://localhost:8080/api/v1/commercial-activities/search?town=Roma&numberOfResults=10' \
   -H 'accept: application/json' \
   -H 'Content-Type: multipart/form-data' \
-  -F 'text=I would really like to find an activity that sells both beer and chocolate, where should i go??' \
+  -F 'text=I would really like to find an activity that sells both beer and chocolate, where should i go?' \
   -F 'media=string' | json_pp
 ```
 
@@ -128,7 +123,7 @@ curl -X 'POST' \
   'http://localhost:8080/api/v1/commercial-activities/search?town=Roma&numberOfResults=10' \
   -H 'accept: application/json' \
   -H 'Content-Type: multipart/form-data' \
-  -F 'text=I would really like to find an activity that sells the content of the image i just sent you, where should i go?' \
+  -F 'text=I would really like to find an activity that sells this, where should i go?' \
   -F 'media=@./examples/Beer.png;type=image/png' | json_pp
 ```
 
@@ -138,9 +133,62 @@ curl -X 'POST' \
   'http://localhost:8080/api/v1/commercial-activities/search?town=Roma&numberOfResults=10' \
   -H 'accept: application/json' \
   -H 'Content-Type: multipart/form-data' \
-  -F 'text=I would really like to find an activity that sells the content of the image i just sent you, where should i go?' \
-  -F 'media=@./examples/Panino.jpg;type=image/jpeg' | json_pp
+  -F 'text=I want to become like him, where should i go?' \
+  -F 'media=@./examples/Arnold.jpg;type=image/jpeg' | json_pp
 ```
+
+## RAG
+
+#### Esempio 1 - Formato di input: Testo
+```shell
+curl -X 'POST' \
+  'http://localhost:8080/api/v1/commercial-activities/rag?town=Roma' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: multipart/form-data' \
+  -F 'text=I would really like to drink a beer, where should i go?' \
+  -F 'media=string' 
+```
+
+#### Esempio 2 - Formato di input: Testo
+```shell
+curl -X 'POST' \
+  'http://localhost:8080/api/v1/commercial-activities/rag?town=Roma' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: multipart/form-data' \
+  -F 'text=I would really like to buy some chocolate, where should i go?' \
+  -F 'media=string'
+```
+
+### Esempio 3 - Formato di input: Testo
+```shell
+curl -X 'POST' \
+  'http://localhost:8080/api/v1/commercial-activities/rag?town=Roma' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: multipart/form-data' \
+  -F 'text=I would really like to find an activity that sells both beer and chocolate, where should i go?' \
+  -F 'media=string'
+```
+
+### Esempio 4 - Formato di input: Testo + Immagine
+```shell
+curl -X 'POST' \
+  'http://localhost:8080/api/v1/commercial-activities/rag?town=Roma' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: multipart/form-data' \
+  -F 'text=I would really like to find an activity that sells this, where should i go?' \
+  -F 'media=@./examples/Beer.png;type=image/png' 
+```
+
+### Esempio 5 - Formato di input: Testo + Immagine
+```shell
+curl -X 'POST' \
+  'http://localhost:8080/api/v1/commercial-activities/rag?town=Roma' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: multipart/form-data' \
+  -F 'text=I want to become like him, where should i go?' \
+  -F 'media=@./examples/Arnold.jpg;type=image/jpeg'
+```
+
 
 
 

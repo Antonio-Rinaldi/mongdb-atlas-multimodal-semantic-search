@@ -38,6 +38,8 @@ public class MultimodalChat {
                     case VIDEO -> "Describe and explain accurately what do you see in this video.\n";
                 })
                 .orElse("Describe accurately the content of this file.\n")
-                .concat("In the response you only have to include the detailed description.\n");
+                .concat("In the response you only have to include the detailed description.\n")
+                .concat("The response should not be longer than a couple of sentences.\n")
+                .concat("Be precise but keep it short and sweet.");
     }
 }

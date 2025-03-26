@@ -320,7 +320,7 @@ def test_server_connection() -> bool:
 def main():
     parser = argparse.ArgumentParser(description='Generate and send commercial activities to the API')
     parser.add_argument('--test', action='store_true', help='Run in test mode with 2 activities')
-    parser.add_argument('--batch-size', type=int, default=100, help='Batch size for sending activities (default: 100)')
+    parser.add_argument('--batch-size', type=int, default=10, help='Batch size for sending activities (default: 10)')
     parser.add_argument('--total', type=int, default=10000, help='Total number of activities to generate (default: 10000)')
     parser.add_argument('--debug', action='store_true', help='Enable debug logging')
     args = parser.parse_args()

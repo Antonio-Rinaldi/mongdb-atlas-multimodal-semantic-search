@@ -19,10 +19,12 @@ spring:
         model: bge-m3:567m
       chat:
         multimodal:
+          # gemma3:4b/27b
           model: gemma3:4b
           temperature: 0f
         rag:
-          model: qwq:32b
+          # gemma3:1b/4b/12b/27b, deepseek-r1:7b/14b/32b, qwq:32b
+          model: gemma3:12b
 
   data:
     mongodb:
