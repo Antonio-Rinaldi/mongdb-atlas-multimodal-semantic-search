@@ -189,6 +189,31 @@
             height: auto;
             object-fit: contain;
         }
+
+        .github-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .github-logo {
+            width: 63px;
+            height: 63px;
+        }
+
+        .github-qr {
+            width: 180px;
+            height: 180px;
+            margin-left: 10px;
+        }
+
+        .github-link {
+            color: var(--mongodb-dark);
+            text-decoration: none;
+            font-size: 0.6em;
+            line-height: 24px;
+        }
     </style>
 </head>
 <body>
@@ -437,10 +462,13 @@
         <section>
             <img src="https://webimages.mongodb.com/_com_assets/cms/mongodb_logo1-76twgcu2dm.png" alt="MongoDB Logo"
                  class="mongodb-logo">
-            <h3 class="dark-text">Ricerca Semantica Multimodale con MongoDB Atlas</h3>
-            <h2 style="margin-top: 30px;">Grazie per l'attenzione!</h2>
+            <img src="images/github-qrcode.png" alt="GitHub QR Code" class="github-qr">
+            <div class="github-section">
+                <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo" class="github-logo">
+                <a href="https://github.com/Antonio-Rinaldi/mongdb-atlas-multimodal-semantic-search" target="_blank" class="github-link">github.com/Antonio-Rinaldi/mongdb-atlas-multimodal-semantic-search</a>
+            </div>
+            <h2>Grazie per l'attenzione!</h2>
         </section>
-
     </div>
 </div>
 
